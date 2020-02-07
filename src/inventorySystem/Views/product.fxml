@@ -1,0 +1,84 @@
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Button?>
+<AnchorPane fx:controller="inventorySystem.MainWindowController" xmlns:fx="http://javafx.com/fxml" prefHeight="550" prefWidth="1050">
+<children>
+    <AnchorPane layoutX="30" layoutY="30">
+        <children>
+
+            <Label prefHeight="24" text="Add Product">
+                <font>
+                    <Font size="15" />
+                </font>
+            </Label>
+            <AnchorPane layoutX="520" layoutY="2" >
+                <children>
+                    <Button mnemonicParsing="false" prefHeight="30" prefWidth="80" text="Search" />
+                    <TextField layoutX="100" prefHeight="30" prefWidth="180" />
+                </children>
+            </AnchorPane>
+            <AnchorPane layoutX="15" layoutY="90">
+                <children>
+                    <Label layoutY="8" prefHeight="16" prefWidth="50" text="ID" />
+                    <TextField disable="true" editable="false" layoutX="45" prefHeight="30" prefWidth="140"/>
+
+                    <Label layoutY="48" prefHeight="16" prefWidth="50" text="Name"/>
+                    <TextField layoutX="45" layoutY="40" prefHeight="30" prefWidth="140"/>
+
+                    <Label layoutY="88" prefHeight="16" prefWidth="45" text="Inv" />
+                    <TextField layoutX="45" layoutY="80" prefHeight="30" prefWidth="80" />
+
+                    <Label layoutY="128" prefHeight="16" prefWidth="50" text="Price" />
+                    <TextField layoutX="45" layoutY="120" prefHeight="30" prefWidth="80" />
+
+                    <Label layoutY="168" prefHeight="16" prefWidth="50" text="Max" />
+                    <TextField layoutX="45" layoutY="160" prefHeight="30" prefWidth="80" />
+
+                    <Label layoutX="150" layoutY="168" prefHeight="16" prefWidth="50" text="Min" />
+                    <TextField layoutX="180" layoutY="160" prefHeight="30" prefWidth="80" />
+                </children>
+            </AnchorPane>
+            <Pane layoutX="300" layoutY="30" prefHeight="200" prefWidth="500">
+                <children>
+                    <TableView layoutY="20" prefHeight="120" prefWidth="500" >
+                        <columns>
+                            <TableColumn prefWidth="125" text="Part ID" />
+                            <TableColumn prefWidth="125" text="Part Name" />
+                            <TableColumn prefWidth="125" text="Inventory Level" />
+                            <TableColumn prefWidth="125" text="Price per Unit" />
+                        </columns>
+                    </TableView>
+                    <Button layoutX="450" layoutY="150" mnemonicParsing="false" prefHeight="30" prefWidth="60" text="Add" />
+                </children>
+            </Pane>
+            <Pane layoutX="300" layoutY="230" prefHeight="200" prefWidth="500">
+                <children>
+                    <TableView layoutY="20" prefHeight="120" prefWidth="500" >
+                        <columns>
+                            <TableColumn prefWidth="125" text="Part ID" />
+                            <TableColumn prefWidth="125" text="Part Name" />
+                            <TableColumn prefWidth="125" text="Inventory Level" />
+                            <TableColumn prefWidth="125" text="Price per Unit" />
+                        </columns>
+                    </TableView>
+                    <Button layoutX="450" layoutY="150" mnemonicParsing="false" prefHeight="30" prefWidth="60"
+                            text="Delete" />
+                </children>
+            </Pane>
+            <AnchorPane layoutX="640" layoutY="430" >
+                <children>
+                    <Button layoutX="85" mnemonicParsing="false" prefHeight="30" prefWidth="75" text="Cancel" />
+                    <Button mnemonicParsing="false" prefHeight="30" prefWidth="75" text="Save" />
+                </children>
+            </AnchorPane>
+        </children>
+    </AnchorPane>
+</children>
+</AnchorPane>
