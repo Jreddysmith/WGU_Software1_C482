@@ -10,7 +10,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.layout.HBox?>
-<GridPane fx:controller="inventorySystem.AddPartController" xmlns:fx="http://javafx.com/fxml" alignment="center"
+<GridPane fx:controller="inventorySystem.Controllers.AddPartController" xmlns:fx="http://javafx.com/fxml" alignment="center"
           hgap="10" vgap="15" >
     <padding> <Insets top="25" right="25" bottom="10" left="25" /> </padding>
     <Text style="-fx-font-size: 12pt" text="Add Part" GridPane.columnIndex="0" GridPane.rowIndex="0"
@@ -41,8 +41,8 @@
     <TextField fx:id="company_name" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
     <HBox spacing="10" alignment="bottom_right" GridPane.columnIndex="1" GridPane.rowIndex="7">
-        <Button text="Save" />
-        <Button text="Cancel" />
+        <Button onAction="#savePart" text="Save" />
+        <Button fx:id="cancel_button" onAction="#cancelButton" text="Cancel" />
     </HBox>
 
 </GridPane>
