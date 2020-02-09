@@ -10,15 +10,22 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ToggleGroup?>
 <GridPane fx:controller="inventorySystem.Controllers.AddPartController" xmlns:fx="http://javafx.com/fxml" alignment="center"
           hgap="10" vgap="15" >
     <padding> <Insets top="25" right="25" bottom="10" left="25" /> </padding>
     <Text style="-fx-font-size: 12pt" text="Add Part" GridPane.columnIndex="0" GridPane.rowIndex="0"
           GridPane.columnSpan="2" />
+
     <RadioButton fx:id="in_house" mnemonicParsing="false" text="In House" GridPane.columnIndex="1"
-                 GridPane.rowIndex="0" />
+                 GridPane.rowIndex="0">
+
+        <toggleGroup>
+            <ToggleGroup fx:id="group1" />
+        </toggleGroup>
+    </RadioButton>
     <RadioButton fx:id="outsourced" mnemonicParsing="false" text="Outsourced" GridPane.columnIndex="2"
-                 GridPane.rowIndex="0" />
+                 GridPane.rowIndex="0" toggleGroup="$group1"  />
 
     <Label text="ID" GridPane.columnIndex="0" GridPane.rowIndex="1" />
     <TextField fx:id="part_id" GridPane.columnIndex="1" GridPane.rowIndex="1" />
