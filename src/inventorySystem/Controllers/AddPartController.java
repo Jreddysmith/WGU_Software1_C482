@@ -3,6 +3,7 @@ package inventorySystem.Controllers;
 import inventorySystem.Models.InHouse;
 import inventorySystem.Models.Inventory;
 import inventorySystem.Models.Outsourced;
+import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -78,10 +79,22 @@ public class AddPartController {
 
             String companyName = company_name.getText();
 
-            Outsourced newPart = new Outsourced(currentId.getAndIncrement(), partName, partPrice, partInv,
-                     partMax, partMin, companyName);
+//            Outsourced newPart = new Outsourced(currentId.getAndIncrement(), partName, partPrice, partInv,
+//                     partMax, partMin, companyName);
 
-            inventory.addPart(newPart);
+            Outsourced newPart = new Outsourced();
+
+            newPart.setId(currentId.getAndIncrement());
+            newPart.setName(partName);
+            newPart.setPrice(partPrice);
+            newPart.setStock(partInv);
+            newPart.setMax(partMax);
+            newPart.setMin(partMin);
+            newPart.setCompanyName(companyName);
+
+
+
+            Inventory.addPart(newPart);
 
 
 //            Inventory.getInstance().addPart(new Outsourced(currentId.getAndIncrement(), partName, partPrice, partInv,
@@ -90,16 +103,29 @@ public class AddPartController {
 //            System.out.println(Inventory.getInstance().getAllParts());
         }
 
-        System.out.println("You have just saved an Item");
-        save_button.getScene().getWindow().hide();
+//        System.out.println("You have just saved an Item");
+//        save_button.getScene().getWindow().hide();
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(getClass().getResource("/inventorySystem/Views/mainWindow.fxml"));
+//
+//        loader.load();
+//        Parent root = loader.getRoot();
+//        Stage stage = new Stage();
+//        stage.setScene(new Scene(root));
+//        stage.showAndWait();
+
+        System.out.println("Add button clicked");
+        Stage stage = new Stage();
+        stage = (Stage)save_button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/inventorySystem/Views/mainWindow.fxml"));
 
-        loader.load();
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
+//        loader.load();
+        Parent root = loader.load();
+//        Scene scene = new Scene(root);
+
         stage.setScene(new Scene(root));
-        stage.showAndWait();
+        stage.show();
 
 
 

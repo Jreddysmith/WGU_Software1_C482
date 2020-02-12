@@ -3,11 +3,6 @@ package inventorySystem.Controllers;
 import inventorySystem.Models.*;
 import inventorySystem.Models.Inventory;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,8 +15,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
-import java.util.Observable;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -109,32 +102,49 @@ public class MainWindowController implements Initializable {
     @FXML
     void partAddButton() throws IOException {
         System.out.println("Add button clicked");
-        parts_add_button.getScene().getWindow().hide();
+        Stage stage = new Stage();
+        stage = (Stage)parts_add_button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/inventorySystem/Views/addPart.fxml"));
 
-        loader.load();
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
+        Parent root = loader.load();
         stage.setScene(new Scene(root));
-        stage.showAndWait();
-
+        stage.show();
     }
 
     @FXML
-    void partModifyButton() {
+    public void partModifyButton() throws IOException {
         System.out.println("clicked Modify button");
+        Stage stage = new Stage();
+        stage = (Stage)parts_add_button.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/inventorySystem/Views/addPart.fxml"));
+
+//        loader.load();
+        Parent root = loader.load();
+//        Scene scene = new Scene(root);
+
+        stage.setScene(new Scene(root));
+        stage.show();
+
+
+
+        ModifyedPartController controller = loader.getController();
+//        Part part = MainWindowController.getSelectionModel().getSelectedItem();
+//        controller.getPart(part);
     }
 
     @FXML
     void partDeleteButton() {
         Part part = (Part) parts_table.getSelectionModel().getSelectedItem();
 
-        if(part == null) return;
-
-        inventory.deletePart(part);
-
-
+        if(part == null) {
+            return;
+        } else {
+            Inventory.deletePart(part);
+            updatePart();
+            return;
+        }
     }
 
     @FXML
@@ -144,19 +154,10 @@ public class MainWindowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
-        System.out.println("back to home screen");
-
-
-
-
             parts_part_id.setCellValueFactory(new PropertyValueFactory<>("id"));
             parts_part_name.setCellValueFactory(new PropertyValueFactory<>("name"));
             parts_inventory_level.setCellValueFactory(new PropertyValueFactory<>("stock"));
             parts_price_per_unit.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-
             updatePart();
 
 
@@ -193,7 +194,4 @@ public class MainWindowController implements Initializable {
             Platform.exit();
         }
     }
-
-
-
 }
