@@ -1,5 +1,8 @@
 package inventorySystem.Controllers;
 
+import inventorySystem.Models.InHouse;
+import inventorySystem.Models.Inventory;
+import inventorySystem.Models.Outsourced;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,10 +13,17 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+
+
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class AddPartController {
 
+    @FXML
+    private Inventory inventory;
+
+    private final AtomicInteger currentId = new AtomicInteger(0);
     @FXML
     private RadioButton in_house;
 
@@ -45,14 +55,51 @@ public class AddPartController {
     private Button cancel_button;
 
     @FXML
-    void savePart(ActionEvent event) {
-        System.out.println("printing this from added parts!");
+    private Button save_button;
+
+    @FXML
+    void savePart(ActionEvent event) throws IOException {
+
+//        TextField part = part_name;
+//        TextField inv_name = inv;
+
+        String partName = part_name.getText();
+        int partInv = Integer.parseInt(inv.getText());
+        double partPrice = Double.parseDouble(price_cost.getText());
+        int partMax = Integer.parseInt( max.getText());
+        int partMin = Integer.parseInt(min.getText());
 
 
-        TextField part = part_name;
-        TextField inv_name = inv;
 
-        System.out.println(part.getText() + inv_name.getText());
+
+        if(in_house.isSelected()) {
+
+        } else if (outsourced.isSelected()) {
+
+            String companyName = company_name.getText();
+
+            Outsourced newPart = new Outsourced(currentId.getAndIncrement(), partName, partPrice, partInv,
+                     partMax, partMin, companyName);
+
+            inventory.addPart(newPart);
+
+
+//            Inventory.getInstance().addPart(new Outsourced(currentId.getAndIncrement(), partName, partPrice, partInv,
+//                    partMax, partMin, companyName));
+
+//            System.out.println(Inventory.getInstance().getAllParts());
+        }
+
+        System.out.println("You have just saved an Item");
+        save_button.getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/inventorySystem/Views/mainWindow.fxml"));
+
+        loader.load();
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
 
 
 
@@ -60,7 +107,7 @@ public class AddPartController {
 
     @FXML
     void cancelButton(ActionEvent event) throws IOException {
-        System.out.println("Add button clicked");
+        System.out.println("Cancel Button was clicked");
         cancel_button.getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/inventorySystem/Views/mainWindow.fxml"));
@@ -70,6 +117,11 @@ public class AddPartController {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.showAndWait();
+    }
+
+
+    void changeWindows() {
+
     }
 
 }

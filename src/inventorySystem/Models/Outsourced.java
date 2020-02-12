@@ -1,18 +1,38 @@
 package inventorySystem.Models;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Outsourced extends Part {
-    private String companyName;
+    private StringProperty companyName;
 
     public Outsourced(int id, String name, double price, int stock, int min, int max, String companyName) {
-        super(id, name, price, stock, min, max);
-        setCompanyName(companyName);
+        this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.price = new SimpleDoubleProperty(price);
+        this.stock = new SimpleIntegerProperty(stock);
+        this.min = new SimpleIntegerProperty(min);
+        this.max = new SimpleIntegerProperty(max);
+        this.companyName = new SimpleStringProperty(companyName);
+    }
+
+    public Outsourced() {
+        this.id = new SimpleIntegerProperty(0);
+        this.name = new SimpleStringProperty("");
+        this.price = new SimpleDoubleProperty(0);
+        this.stock = new SimpleIntegerProperty(0);
+        this.min = new SimpleIntegerProperty(0);
+        this.max = new SimpleIntegerProperty(0);
+        this.companyName = new SimpleStringProperty("");
     }
 
     public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+        this.companyName.set(companyName);
     }
 
     public String getCompanyName() {
-        return companyName;
+        return this.companyName.get();
     }
 }

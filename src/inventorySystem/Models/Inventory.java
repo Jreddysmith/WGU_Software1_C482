@@ -4,56 +4,60 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Inventory {
-    private ObservableList<Part> allParts = FXCollections.observableArrayList();
-    private ObservableList<Product> allProducts = FXCollections.observableArrayList();
+//    private static final Inventory inventory = new Inventory();
+    private static ObservableList<Part> allParts = FXCollections.observableArrayList();
+    private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
-    public void addPart(Part newPart) {
-        this.allParts.add(newPart);
+//    public static Inventory getInstance(){
+//        return inventory;
+//    }
+    public static void addPart(Part newPart) {
+        allParts.add(newPart);
     }
 
-    public void addProduct(Product newProduct) {
-        this.allProducts.add(newProduct);
+    public static void addProduct(Product newProduct) {
+        allProducts.add(newProduct);
     }
 
-    public Part lookupPart(int partId) {
+    public static Part lookupPart(int partId) {
         return allParts.filtered(part -> part.getId() == partId).stream().findFirst().orElse(null);
     }
 
-    public Product lookupProduct(int productId) {
+    public static Product lookupProduct(int productId) {
         return allProducts.filtered(product -> product.getId() == productId).stream().findFirst().orElse(null);
     }
 
-    public ObservableList<Part> lookupPart(String partName) {
+    public static ObservableList<Part> lookupPart(String partName) {
 
         return FXCollections.observableArrayList(allParts.filtered(part -> part.getName().equals(partName)));
     }
 
-    public ObservableList<Product> lookupProduct(String productName) {
+    public static ObservableList<Product> lookupProduct(String productName) {
         return FXCollections.observableArrayList(allProducts.filtered(
                 product -> product.getName().equals(productName)));
     }
 
-    public void updatePart(int index, Part selectedPart) {
+    public static void updatePart(int index, Part selectedPart) {
         allParts.set(index, selectedPart);
     }
 
-    public void updateProduct(int index, Product newProduct) {
+    public static void updateProduct(int index, Product newProduct) {
         allProducts.set(index, newProduct);
     }
 
-    public boolean deletePart(Part selectedPart) {
+    public static boolean deletePart(Part selectedPart) {
         return allParts.remove(selectedPart);
     }
 
-    public boolean deleteProduct(Product selectedProduct) {
+    public static boolean deleteProduct(Product selectedProduct) {
         return allProducts.remove(selectedProduct);
     }
 
-    public ObservableList<Part> getAllParts() {
+    public static ObservableList<Part> getAllParts() {
         return allParts;
     }
 
-    public ObservableList<Product> getAllProducts() {
+    public static ObservableList<Product> getAllProducts() {
         return allProducts;
     }
 }
