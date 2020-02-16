@@ -89,7 +89,7 @@ public class AddPartController {
 //            Inventory.addPart(newPart);
 
             try {
-                newPart.isValid();
+                newPart.validate();
                 Inventory.addPart(newPart);
 
                 System.out.println("Add button clicked");
@@ -123,7 +123,7 @@ public class AddPartController {
 //            Inventory.addPart(newPart);
 
             try{
-                newPart.isValid();
+                newPart.validate();
                 Inventory.addPart((newPart));
 
                 System.out.println("Add button clicked");

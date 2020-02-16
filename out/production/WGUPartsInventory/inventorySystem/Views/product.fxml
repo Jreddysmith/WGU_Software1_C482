@@ -61,7 +61,7 @@
             <TextField fx:id="products_search_field" layoutX="741.0" layoutY="69.0" />
             <Button fx:id="productsAddButton" layoutX="897.0" layoutY="261.0" mnemonicParsing="false" onAction="#productsAdd" prefHeight="31.0" prefWidth="126.0" text="Add" />
             <Button fx:id="products_delete_button" layoutX="928.0" layoutY="461.0" mnemonicParsing="false" onAction="#productsDeleteButton" prefHeight="31.0" prefWidth="95.0" text="Delete" />
-            <Button fx:id="cancel_id_button" layoutX="928.0" layoutY="514.0" mnemonicParsing="false" onAction="#cancelButton" prefHeight="31.0" prefWidth="95.0" text="Cancel" />
+            <Button fx:id="cancel_button" layoutX="928.0" layoutY="514.0" mnemonicParsing="false" onAction="#cancelButton" prefHeight="31.0" prefWidth="95.0" text="Cancel" />
             <Button fx:id="product_save_button" layoutX="814.0" layoutY="514.0" mnemonicParsing="false" onAction="#productSaveButton" prefHeight="31.0" prefWidth="95.0" text="Save" />
          </children>
       </AnchorPane>

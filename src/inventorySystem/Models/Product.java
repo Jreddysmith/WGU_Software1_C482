@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 
 public class Product {
     private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    private static int count = 0;
     private int id;
     private String name;
     private double price;
@@ -14,6 +15,7 @@ public class Product {
     private int max;
 
     public Product() {
+        id = ++count;
     }
 
     public void addAssociatedPart(Part part) {
@@ -80,9 +82,7 @@ public class Product {
         this.max = max;
     }
 
-    public boolean isValid() throws ValidationException {
-        double  totalPartsPrice = 0.00;
-
+    public void validate() throws ValidationException {
         if(getName().equals("")) {
             throw new ValidationException("Name can not be empty");
         }
@@ -92,16 +92,11 @@ public class Product {
         if(getPrice() <= 0) {
             throw new ValidationException("The price must be more the 0");
         }
-        if(getMin() <= 0 || getMin() < getMax()) {
+        if(getMin() <= 0 || getMin() >= getMax()) {
             throw new ValidationException("Min must be greater than 0 and Min amount has to be less than Max amount");
         }
-        if(getStock() < getMax() || getStock() > getMax()) {
+        if(getStock() < getMin() || getStock() > getMax()) {
             throw new ValidationException("Inventory must be between the min and max values");
         }
-
-        for(Part p : getAllAssociatedParts()) {
-            totalPartsPrice += p.getPrice();
-        }
-        return true;
     }
 }

@@ -19,6 +19,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import static inventorySystem.Models.Inventory.getAllParts;
+import static inventorySystem.Models.Inventory.getAllProducts;
 
 public class MainWindowController implements Initializable {
 
@@ -149,10 +150,10 @@ public class MainWindowController implements Initializable {
     @FXML
     public void partsSearchButton() {
         String partsSearch = parts_search_field.getText();
-        Part searchPart = Inventory.lookupPart(Integer.parseInt(partsSearch));
 
 
-        if(searchPart != null || !partsSearch.isEmpty()) {
+        if(partsSearch != null && !partsSearch.isEmpty()) {
+            Part searchPart = Inventory.lookupPart(Integer.parseInt(partsSearch));
             ObservableList<Part> filteredPart = FXCollections.observableArrayList();
             filteredPart.add(searchPart);
             parts_table.setItems(filteredPart);
@@ -168,6 +169,11 @@ public class MainWindowController implements Initializable {
     @FXML
     public void updatePart() {
         parts_table.setItems(getAllParts());
+    }
+
+    @FXML
+    public void updateProducts() {
+        product_table.setItems(getAllProducts());
     }
 
     @FXML
@@ -199,7 +205,7 @@ public class MainWindowController implements Initializable {
             products_part_name.setCellValueFactory(new PropertyValueFactory<>("name"));
             products_inventory_level.setCellValueFactory(new PropertyValueFactory<>("stock"));
             products_price_per_unit.setCellValueFactory(new PropertyValueFactory<>("price"));
-            updatePart();
+            updateProducts();
 
     }
 
