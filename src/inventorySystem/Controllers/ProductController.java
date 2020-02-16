@@ -1,5 +1,6 @@
 package inventorySystem.Controllers;
 
+import inventorySystem.Models.Inventory;
 import inventorySystem.Models.Part;
 import inventorySystem.Models.Product;
 import javafx.collections.FXCollections;
@@ -10,11 +11,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.awt.*;
 import java.io.IOException;
@@ -105,15 +105,23 @@ public class ProductController implements Initializable {
 
     @FXML
     public void cancelButton(ActionEvent event) throws IOException {
-        Parent loader = FXMLLoader.load(getClass().getResource("inventorySystem/Views/mainWindow.fxml"));
-        Scene scene = new Scene(loader);
-
-
+        System.out.println("Cancel Button was clicked");
+        Stage stage = new Stage();
+        cancel_button.getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/inventorySystem/Views/mainWindow.fxml"));
+        Parent root = loader.load();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML
-    public void updatePart() {
+    public void updateAllProducts() {
         all_product_table.setItems(getAllParts());
+    }
+
+    @FXML
+    public void updateCurrentProducts() {
         current_product_table.setItems(productParts);
     }
 
@@ -123,26 +131,51 @@ public class ProductController implements Initializable {
         all_products_part_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         all_products_inventory_level.setCellValueFactory(new PropertyValueFactory<>("stock"));
         all_products_price_per_unit.setCellValueFactory(new PropertyValueFactory<>("price"));
-        updatePart();
-
+        updateAllProducts();
 
         current_products_part_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         current_products_part_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         current_products_inventory_level.setCellValueFactory(new PropertyValueFactory<>("stock"));
         current_products_price_per_unit.setCellValueFactory(new PropertyValueFactory<>("price"));
-        updatePart();
+        updateAllProducts();
 
     }
 
 
     public void productsSearchButton(ActionEvent event) {
-        
+        String partsSearch = products_search_field.getText();
+        Part searchPart = Inventory.lookupPart(Integer.parseInt(partsSearch));
+
+
+        if(searchPart != null || !partsSearch.isEmpty()) {
+            ObservableList<Part> filteredPart = FXCollections.observableArrayList();
+            filteredPart.add(searchPart);
+            all_product_table.setItems(filteredPart);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Search Error");
+            alert.setHeaderText("Not Found");
+            alert.setContentText("Search");
+            alert.showAndWait();
+        }
     }
 
     public void productsAdd(ActionEvent event) {
     }
 
     public void productsDeleteButton(ActionEvent event) {
+
+        if (productParts.size() > 2) {
+            Part part = current_product_table.getSelectionModel().getSelectedItem();
+            productParts.remove(part);
+            updateCurrentProducts();
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Delete Error!");
+            alert.setHeaderText("This should have at least one part!");
+            alert.showAndWait();
+        }
     }
 
     public void productSaveButton(ActionEvent event) {

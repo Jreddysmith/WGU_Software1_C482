@@ -5,21 +5,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/WGUPartsInventory/inventorySystem/Controllers/AddPartController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WGUPartsInventory/inventorySystem/Controllers/AddPartController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/WGUPartsInventory/inventorySystem/Controllers/MainWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WGUPartsInventory/inventorySystem/Controllers/MainWindowController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WGUPartsInventory/inventorySystem/Controllers/ModifyedPartController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WGUPartsInventory/inventorySystem/Controllers/ModifyedPartController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WGUPartsInventory/inventorySystem/Models/InHouse.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WGUPartsInventory/inventorySystem/Models/InHouse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WGUPartsInventory/inventorySystem/Models/Part.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WGUPartsInventory/inventorySystem/Models/Part.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WGUPartsInventory/inventorySystem/Views/addPart.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WGUPartsInventory/inventorySystem/Views/addPart.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WGUPartsInventory/inventorySystem/Views/mainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WGUPartsInventory/inventorySystem/Views/mainWindow.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/inventorySystem/Controllers/AddPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/inventorySystem/Controllers/AddPartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/inventorySystem/Controllers/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/inventorySystem/Controllers/MainWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/inventorySystem/Controllers/ModifyedPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/inventorySystem/Controllers/ModifyedPartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/inventorySystem/Controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/inventorySystem/Controllers/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/inventorySystem/Models/InHouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/inventorySystem/Models/InHouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/inventorySystem/Models/Part.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/inventorySystem/Models/Part.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/inventorySystem/Models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/inventorySystem/Models/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/inventorySystem/Views/addPart.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/inventorySystem/Views/addPart.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/inventorySystem/Views/mainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/inventorySystem/Views/mainWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/inventorySystem/Views/product.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/inventorySystem/Views/product.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,7 +210,7 @@
       <workItem from="1359379250712" duration="1302000" />
       <workItem from="1581018998903" duration="33990000" />
       <workItem from="1581180380205" duration="72376000" />
-      <workItem from="1581782422346" duration="12790000" />
+      <workItem from="1581782422346" duration="15781000" />
     </task>
     <servers />
   </component>
@@ -258,25 +246,25 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1581367573411" />
-    <state width="1493" height="75" key="GridCell.Tab.0.bottom" timestamp="1581813366223">
+    <state width="1493" height="430" key="GridCell.Tab.0.bottom" timestamp="1581813717545">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="75" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1581813366223" />
+    <state width="1493" height="430" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1581813717545" />
     <state width="1493" height="155" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581789361575" />
-    <state width="1493" height="75" key="GridCell.Tab.0.center" timestamp="1581813366223">
+    <state width="1493" height="430" key="GridCell.Tab.0.center" timestamp="1581813717545">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="75" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1581813366223" />
+    <state width="1493" height="430" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1581813717545" />
     <state width="1493" height="155" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1581789361575" />
-    <state width="1493" height="75" key="GridCell.Tab.0.left" timestamp="1581813366223">
+    <state width="1493" height="430" key="GridCell.Tab.0.left" timestamp="1581813717545">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="75" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1581813366223" />
+    <state width="1493" height="430" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1581813717545" />
     <state width="1493" height="155" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1581789361571" />
-    <state width="1493" height="75" key="GridCell.Tab.0.right" timestamp="1581813366223">
+    <state width="1493" height="430" key="GridCell.Tab.0.right" timestamp="1581813717545">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="75" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1581813366223" />
+    <state width="1493" height="430" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1581813717545" />
     <state width="1493" height="155" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1581789361575" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1581462521209">
       <screen x="0" y="0" width="1536" height="824" />

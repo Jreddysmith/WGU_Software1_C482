@@ -3,7 +3,6 @@ package inventorySystem.Controllers;
 import inventorySystem.Models.InHouse;
 import inventorySystem.Models.Inventory;
 import inventorySystem.Models.Outsourced;
-import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,8 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
-
 import inventorySystem.exceptions.ValidationException;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -78,11 +75,6 @@ public class AddPartController {
         double partPrice = Double.parseDouble(price_cost.getText());
         int partMax = Integer.parseInt(max.getText());
         int partMin = Integer.parseInt(min.getText());
-
-
-//        save_button.setDisable(true);
-
-
 
         if (in_house.isSelected()) {
             int machineId = Integer.parseInt(company_name.getText());
@@ -151,20 +143,10 @@ public class AddPartController {
             }
 
         }
-
-
-//        System.out.println("Add button clicked");
-//        Stage stage = new Stage();
-//        stage = (Stage) save_button.getScene().getWindow();
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(getClass().getResource("/inventorySystem/Views/mainWindow.fxml"));
-//        Parent root = loader.load();
-//        stage.setScene(new Scene(root));
-//        stage.show();
     }
 
     @FXML
-    void cancelButton(ActionEvent event) throws IOException {
+    public void cancelButton(ActionEvent event) throws IOException {
         System.out.println("Cancel Button was clicked");
         Stage stage = new Stage();
         cancel_button.getScene().getWindow().hide();
@@ -173,11 +155,6 @@ public class AddPartController {
         Parent root = loader.load();
         stage.setScene(new Scene(root));
         stage.show();
-    }
-
-
-    void changeWindows() {
-
     }
 
 }

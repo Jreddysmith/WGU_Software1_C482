@@ -14,13 +14,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
-
 import static inventorySystem.Models.Inventory.getAllParts;
 
 public class MainWindowController implements Initializable {
@@ -110,27 +107,6 @@ public class MainWindowController implements Initializable {
         Parent root = loader.load();
         stage.setScene(new Scene(root));
         stage.show();
-    }
-
-    @FXML
-    public void modifyPartScreen() throws IOException {
-
-
-
-
-
-//        Stage stage = new Stage();
-//        stage = (Stage)parts_add_button.getScene().getWindow();
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(getClass().getResource("/inventorySystem/Views/modifyPart.fxml"));
-//
-//        MainWindowController.modifiedPart = part;
-//        ModifyedPartController controller = loader.getController();
-//        controller.getPart(modifiedPart);
-//
-//        Parent root = loader.load();
-//        stage.setScene(new Scene(root));
-//        stage.show();
     }
 
     @FXML
