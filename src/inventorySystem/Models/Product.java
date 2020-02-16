@@ -1,5 +1,6 @@
 package inventorySystem.Models;
 
+import inventorySystem.exceptions.ValidationException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -12,17 +13,15 @@ public class Product {
     private int min;
     private int max;
 
-    public Product(int id, String name, double price, int stock, int min, int max) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.stock = stock;
-        this.min = min;
-        this.max = max;
+    public Product() {
     }
 
     public void addAssociatedPart(Part part) {
         this.associatedParts.add(part);
+    }
+
+    public int getPartCount(){
+       return associatedParts.size();
     }
 
     public boolean deleteAssociatedPart(Part selectedAspart) {
@@ -79,5 +78,30 @@ public class Product {
 
     public void setMax(int max) {
         this.max = max;
+    }
+
+    public boolean isValid() throws ValidationException {
+        double  totalPartsPrice = 0.00;
+
+        if(getName().equals("")) {
+            throw new ValidationException("Name can not be empty");
+        }
+        if(getStock() <= 0) {
+            throw new ValidationException("Inventory must greater than 0");
+        }
+        if(getPrice() <= 0) {
+            throw new ValidationException("The price must be more the 0");
+        }
+        if(getMin() <= 0 || getMin() < getMax()) {
+            throw new ValidationException("Min must be greater than 0 and Min amount has to be less than Max amount");
+        }
+        if(getStock() < getMax() || getStock() > getMax()) {
+            throw new ValidationException("Inventory must be between the min and max values");
+        }
+
+        for(Part p : getAllAssociatedParts()) {
+            totalPartsPrice += p.getPrice();
+        }
+        return true;
     }
 }

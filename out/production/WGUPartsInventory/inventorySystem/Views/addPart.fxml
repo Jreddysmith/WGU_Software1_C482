@@ -17,14 +17,16 @@
     <Text style="-fx-font-size: 12pt" text="Add Part" GridPane.columnIndex="0" GridPane.rowIndex="0"
           GridPane.columnSpan="2" />
 
-    <RadioButton fx:id="in_house" mnemonicParsing="false" text="In House" GridPane.columnIndex="1"
+    <RadioButton onAction="#inHouseClick" selected="true" fx:id="in_house" mnemonicParsing="false" text="In House"
+                 GridPane.columnIndex="1"
                  GridPane.rowIndex="0">
 
         <toggleGroup>
             <ToggleGroup fx:id="group1" />
         </toggleGroup>
     </RadioButton>
-    <RadioButton fx:id="outsourced" mnemonicParsing="false" text="Outsourced" GridPane.columnIndex="2"
+    <RadioButton onAction="#outsourced" fx:id="outsourced" mnemonicParsing="false" text="Outsourced"
+                 GridPane.columnIndex="2"
                  GridPane.rowIndex="0" toggleGroup="$group1"  />
 
     <Label text="ID" GridPane.columnIndex="0" GridPane.rowIndex="1" />
@@ -44,7 +46,7 @@
     <Label text="Min" GridPane.rowIndex="5" GridPane.columnIndex="2" />
     <TextField fx:id="min" GridPane.columnIndex="3" GridPane.rowIndex="5" />
 
-    <Label text="Company Name" GridPane.rowIndex="6" GridPane.columnIndex="0" />
+    <Label fx:id="company_name_field" text="Machine ID" GridPane.rowIndex="6" GridPane.columnIndex="0" />
     <TextField fx:id="company_name" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
     <HBox spacing="10" alignment="bottom_right" GridPane.columnIndex="1" GridPane.rowIndex="7">

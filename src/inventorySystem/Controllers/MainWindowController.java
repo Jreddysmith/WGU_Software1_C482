@@ -3,6 +3,8 @@ package inventorySystem.Controllers;
 import inventorySystem.Models.*;
 import inventorySystem.Models.Inventory;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -95,9 +97,7 @@ public class MainWindowController implements Initializable {
     @FXML
     private Inventory inventory;
 
-
-
-
+    private static Part modifiedPart;
 
     @FXML
     void partAddButton() throws IOException {
@@ -113,37 +113,79 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
-    public void partModifyButton() throws IOException {
-        System.out.println("clicked Modify button");
+    public void modifyPartScreen() throws IOException {
+
+
+
+
+
+//        Stage stage = new Stage();
+//        stage = (Stage)parts_add_button.getScene().getWindow();
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(getClass().getResource("/inventorySystem/Views/modifyPart.fxml"));
+//
+//        MainWindowController.modifiedPart = part;
+//        ModifyedPartController controller = loader.getController();
+//        controller.getPart(modifiedPart);
+//
+//        Parent root = loader.load();
+//        stage.setScene(new Scene(root));
+//        stage.show();
+    }
+
+    @FXML
+    public void addPartsScreen() throws IOException {
         Stage stage = new Stage();
         stage = (Stage)parts_add_button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/inventorySystem/Views/addPart.fxml"));
 
-//        loader.load();
         Parent root = loader.load();
-//        Scene scene = new Scene(root);
-
         stage.setScene(new Scene(root));
         stage.show();
-
-
-
-        ModifyedPartController controller = loader.getController();
-//        Part part = MainWindowController.getSelectionModel().getSelectedItem();
-//        controller.getPart(part);
     }
 
     @FXML
-    void partDeleteButton() {
+    public void partModifyButton() throws IOException {
+
+        Part part = parts_table.getSelectionModel().getSelectedItem();
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/inventorySystem/Views/modifyPart.fxml"));
+        loader.load();
+
+        ModifyedPartController mpc = loader.getController();
+        mpc.getPart(part);
+
+    }
+
+    @FXML
+    public void partDeleteButton() {
         Part part = (Part) parts_table.getSelectionModel().getSelectedItem();
 
-        if(part == null) {
-            return;
-        } else {
+        if (part != null) {
             Inventory.deletePart(part);
             updatePart();
-            return;
+        }
+        return;
+    }
+
+    @FXML
+    public void partsSearchButton() {
+        String partsSearch = parts_search_field.getText();
+        Part searchPart = Inventory.lookupPart(Integer.parseInt(partsSearch));
+
+
+        if(searchPart != null || !partsSearch.isEmpty()) {
+            ObservableList<Part> filteredPart = FXCollections.observableArrayList();
+            filteredPart.add(searchPart);
+            parts_table.setItems(filteredPart);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Search Error");
+            alert.setHeaderText("Not Found");
+            alert.setContentText("Search");
+            alert.showAndWait();
         }
     }
 
@@ -151,6 +193,22 @@ public class MainWindowController implements Initializable {
     public void updatePart() {
         parts_table.setItems(getAllParts());
     }
+
+    @FXML
+    public void productsAddButton() throws IOException {
+
+        System.out.println("Add Product button clicked");
+        Stage stage = new Stage();
+        stage = (Stage)products_add_button.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/inventorySystem/Views/product.fxml"));
+
+        Parent root = loader.load();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -161,22 +219,11 @@ public class MainWindowController implements Initializable {
             updatePart();
 
 
-//
-//            products_part_id.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
-//            products_part_name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
-//            products_inventory_level.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getStock()).asObject());
-//            products_price_per_unit.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getPrice()).asObject());
-//
-//
-//            parts_table.setItems(inventory.getAllParts());
-//
-//            System.out.println("seeing if im getting the parts back: " + inventory.getAllParts());
-
-
-//            parts_table.setItems(Inventory.getInstance().getAllParts());
-//            product_table.setItems(Inventory.getInstance().getAllProducts());
-//
-//            System.out.println("Lets see if out inventory comes up: " + Inventory.getInstance().getAllParts());
+            products_part_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+            products_part_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+            products_inventory_level.setCellValueFactory(new PropertyValueFactory<>("stock"));
+            products_price_per_unit.setCellValueFactory(new PropertyValueFactory<>("price"));
+            updatePart();
 
     }
 

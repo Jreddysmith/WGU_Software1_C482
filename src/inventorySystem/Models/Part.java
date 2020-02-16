@@ -1,8 +1,6 @@
 package inventorySystem.Models;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.StringProperty;
+import inventorySystem.exceptions.ValidationException;
 
 public abstract class Part {
     private static int count = 0;
@@ -13,17 +11,8 @@ public abstract class Part {
     private int min;
     private int max;
 
-//    public Part(int id, String name, double price, int stock, int min, int max) {
-//        this.id = id;
-//        this.name = name;
-//        this.price = price;
-//        this.stock = stock;
-//        this.min = min;
-//        this.max = max;
-//    }
-
     public Part(){
-
+        this.id = ++count;
     }
 
     public int getId() {
@@ -72,5 +61,25 @@ public abstract class Part {
 
     public void setMax(int max) {
         this.max = max;
+    }
+
+    public boolean isValid() throws ValidationException {
+
+        if(getName().equals("")) {
+            throw new ValidationException("Name can not be empty");
+        }
+        if(getStock() <= 0) {
+            throw new ValidationException("Inventory must greater than 0");
+        }
+        if(getPrice() <= 0) {
+            throw new ValidationException("The price must be more the 0");
+        }
+        if(getMin() <= 0 || getMin() < getMax()) {
+            throw new ValidationException("Min must be greater than 0 and Min amount has to be less than Max amount");
+        }
+        if(getStock() < getMax() || getStock() > getMax()) {
+            throw new ValidationException("Inventory must be between the min and max values");
+        }
+        return true;
     }
 }

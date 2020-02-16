@@ -19,7 +19,9 @@
                   style="-fx-border-radius: 10px; -fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid;">
          <children>
             <Label fx:id="parts_label" layoutX="23.0" layoutY="37.0" prefHeight="21.0" prefWidth="60.0" text="Parts" />
-            <Button fx:id="parts_search" layoutX="144.0" layoutY="32.0" mnemonicParsing="false" text="Search" />
+            <Button onAction="#partsSearchButton" fx:id="parts_search" layoutX="144.0" layoutY="32.0"
+                    mnemonicParsing="false"
+                    text="Search" />
             <TextField fx:id="parts_search_field" layoutX="241.0" layoutY="32.0" />
             <TableView fx:id="parts_table" layoutX="8.0" layoutY="93.0" prefHeight="144.0" prefWidth="477.0">
               <columns>
@@ -54,7 +56,9 @@
                   <TableColumn fx:id="products_price_per_unit" prefWidth="177.0" text="Price/Cost Per Unit" />
                </columns>
             </TableView>
-            <Button fx:id="products_add_button" layoutX="83.0" layoutY="250.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="74.0" text="Add" />
+            <Button onAction="#productsAddButton" fx:id="products_add_button" layoutX="83.0" layoutY="250.0"
+                    mnemonicParsing="false"
+                     prefHeight="31.0" prefWidth="74.0" text="Add" />
             <Button fx:id="products_modify_button" layoutX="170.0" layoutY="250.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Modify" />
             <Button fx:id="products_delete_button" layoutX="276.0" layoutY="250.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="89.0" text="Delete" />
          </children>
