@@ -12,7 +12,6 @@ public abstract class Part {
     private int max;
 
     public Part(){
-//        id = ++count;
     }
 
     public int getId() {

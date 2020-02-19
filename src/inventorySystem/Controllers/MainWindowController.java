@@ -99,6 +99,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     void partAddButton() throws IOException {
+        setModifiedPart(null);
         System.out.println("Add button clicked");
         Stage stage = new Stage();
         stage = (Stage)parts_add_button.getScene().getWindow();

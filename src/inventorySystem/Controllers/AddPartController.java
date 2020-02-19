@@ -1,11 +1,9 @@
 package inventorySystem.Controllers;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import inventorySystem.Models.InHouse;
 import inventorySystem.Models.Inventory;
 import inventorySystem.Models.Outsourced;
 import inventorySystem.Models.Part;
-import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,14 +11,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import inventorySystem.exceptions.ValidationException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicInteger;
 import static inventorySystem.Controllers.MainWindowController.getModifiedPart;
 
 public class AddPartController implements Initializable {
@@ -28,7 +24,6 @@ public class AddPartController implements Initializable {
     @FXML
     private Inventory inventory;
 
-    private final AtomicInteger currentId = new AtomicInteger(0);
     @FXML
     private RadioButton in_house;
 
@@ -77,23 +72,21 @@ public class AddPartController implements Initializable {
     this.modPart = getModifiedPart();
     }
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("seeing if the initialize works");
         if(modPart != null) {
+            System.out.println("lets see if this has anything in it " + modPart.getClass());
             main_label.setText("Modify");
             if(modPart instanceof InHouse) {
                 inHouseClick();
                 in_house.selectedProperty().setValue(true);
                 outsourced.selectedProperty().setValue(false);
                 System.out.println("this is an inhouse object");
-//                company_name.setText(Integer.toString(((InHouse) modPart).getMachineId()));
             } else{
                 outsourced();
                 outsourced.selectedProperty().setValue(true);
                 in_house.selectedProperty().setValue(false);
-//                company_name.setText(((Outsourced) modPart).getCompanyName());
                 System.out.println("this is an outsorced");
             }
         } else {
@@ -191,7 +184,6 @@ public class AddPartController implements Initializable {
                 alert.setContentText(e.getMessage());
                 alert.showAndWait();
             }
-
         }
     }
 
@@ -213,21 +205,16 @@ public class AddPartController implements Initializable {
         } else {
             company_name.setText(((Outsourced) part).getCompanyName());
         }
-
-//        this.updatedPartReturn = Integer.parseInt(part_id.getText());
     }
 
     @FXML
     public void updateButton(ActionEvent event){
-//        int partId = updatedPartReturn;
-
         int partId = Integer.parseInt(part_id.getText());
         String partName = part_name.getText();
         int partInv = Integer.parseInt(inv.getText());
         double partPrice = Double.parseDouble(price_cost.getText());
         int partMax = Integer.parseInt(max.getText());
         int partMin = Integer.parseInt(min.getText());
-
 
         if (in_house.isSelected()) {
             int machineId = Integer.parseInt(company_name.getText());
@@ -241,7 +228,6 @@ public class AddPartController implements Initializable {
             updatePart.setMin(partMin);
             updatePart.setMachineId(machineId);
 
-
             try {
                 updatePart.validate();
                 Inventory.updatePart(partId, updatePart);
@@ -254,7 +240,6 @@ public class AddPartController implements Initializable {
                 Parent root = loader.load();
                 stage.setScene(new Scene(root));
                 stage.show();
-
 
             } catch (ValidationException | IOException e) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);

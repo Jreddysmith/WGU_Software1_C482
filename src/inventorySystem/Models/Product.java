@@ -15,7 +15,6 @@ public class Product {
     private int max;
 
     public Product() {
-//        id = ++count;
     }
 
     public void addAssociatedPart(Part part) {
