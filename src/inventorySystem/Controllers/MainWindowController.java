@@ -124,27 +124,96 @@ public class MainWindowController implements Initializable {
 
     @FXML
     public void partModifyButton() throws IOException {
-
         Part part = parts_table.getSelectionModel().getSelectedItem();
+        setModifiedPart(part);
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/inventorySystem/Views/modifyPart.fxml"));
-        loader.load();
+        if(part == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("No object");
+            alert.setContentText("You at least have to select one Item to modify to continue!");
+            alert.showAndWait();
+        } else {
 
-        ModifyedPartController mpc = loader.getController();
-        mpc.getPart(part);
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/inventorySystem/Views/addPart.fxml"));
+            Parent root = loader.load();
 
+            AddPartController mpc = loader.getController();
+            mpc.getPart(part);
+
+            Stage stage;
+            stage = (Stage)parts_modify_button.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+    }
+
+    public void setModifiedPart(Part modifyPart) {
+        MainWindowController.modifiedPart = modifyPart;
+    }
+
+    public static Part getModifiedPart() {
+        return modifiedPart;
+    }
+
+    @FXML
+    public void productModifyButton() throws IOException {
+        Product product = product_table.getSelectionModel().getSelectedItem();
+
+        if(product == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("No object");
+            alert.setContentText("You at least have to select one Item to modify to continue!");
+            alert.showAndWait();
+        } else {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/inventorySystem/Views/product.fxml"));
+            Parent root = loader.load();
+
+            ProductController mpc = loader.getController();
+            mpc.getProduct(product);
+
+            Stage stage;
+            stage = (Stage)products_modify_button.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
     }
 
     @FXML
     public void partDeleteButton() {
-        Part part = (Part) parts_table.getSelectionModel().getSelectedItem();
+        Part part = parts_table.getSelectionModel().getSelectedItem();
 
         if (part != null) {
             Inventory.deletePart(part);
             updatePart();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Delete Error");
+            alert.setContentText("You have to have an Item to be able to delete it");
+            alert.showAndWait();
         }
-        return;
+    }
+
+    @FXML
+    public void productDeleteButton() {
+        Product product = product_table.getSelectionModel().getSelectedItem();
+
+        if (product != null) {
+            Inventory.deleteProduct(product);
+            updateProducts();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Delete Error");
+            alert.setContentText("You have to have an Item to be able to delete it");
+            alert.showAndWait();
+        }
+
     }
 
     @FXML
@@ -164,6 +233,25 @@ public class MainWindowController implements Initializable {
             alert.setContentText("Search");
             alert.showAndWait();
         }
+    }
+
+    @FXML
+    public void productSearchButton() {
+        String productSearch = products_search_field.getText();
+
+        if(productSearch != null && !productSearch.isEmpty()) {
+            Product searchProduct = Inventory.lookupProduct(Integer.parseInt(productSearch));
+            ObservableList<Product> filteredProduct = FXCollections.observableArrayList();
+            filteredProduct.add(searchProduct);
+            product_table.setItems(filteredProduct);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Search Error");
+            alert.setHeaderText("Not Found");
+            alert.setContentText("Search");
+            alert.showAndWait();
+        }
+
     }
 
     @FXML

@@ -19,8 +19,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import static inventorySystem.Models.Inventory.getAllParts;
+
 import javafx.stage.Stage;
+
+import static inventorySystem.Models.Inventory.*;
 
 public class ProductController implements Initializable {
 
@@ -90,6 +92,12 @@ public class ProductController implements Initializable {
     @FXML
     private Button product_save_button;
 
+    @FXML
+    private Label main_label;
+
+    @FXML
+    private Button product_update_button;
+
 
     @FXML
     private ObservableList<Part> productParts = FXCollections.observableArrayList();
@@ -98,7 +106,7 @@ public class ProductController implements Initializable {
     public void cancelButton(ActionEvent event) throws IOException {
         System.out.println("Cancel Button was clicked");
         Stage stage = new Stage();
-        cancel_button.getScene().getWindow().hide();
+        stage = (Stage) cancel_button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/inventorySystem/Views/mainWindow.fxml"));
         Parent root = loader.load();
@@ -152,13 +160,22 @@ public class ProductController implements Initializable {
     @FXML
     public void productsAdd(ActionEvent event) {
         Part part = all_product_table.getSelectionModel().getSelectedItem();
-        productParts.add(part);
-        updateCurrentProducts();
+
+        if(part != null) {
+            productParts.add(part);
+            updateCurrentProducts();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Can't Added whats not there");
+            alert.setContentText("You have to select an item to add it");
+            alert.showAndWait();
+        }
     }
 
     @FXML
     public void productsDeleteButton(ActionEvent event) {
-        if (productParts.size() > 2) {
+        if (productParts.size() > 1) {
             Part part = current_product_table.getSelectionModel().getSelectedItem();
             productParts.remove(part);
             updateCurrentProducts();
@@ -196,7 +213,66 @@ public class ProductController implements Initializable {
 
             System.out.println("Saving and going to main screen");
             Stage stage = new Stage();
-            product_save_button.getScene().getWindow().hide();
+            stage = (Stage) product_update_button.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/inventorySystem/Views/mainWindow.fxml"));
+            Parent root = loader.load();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (ValidationException | IOException e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Sorry your Product didn't save");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+    public void getProduct(Product product) {
+        main_label.setText("Modify Product");
+        product_update_button.setVisible(true);
+        product_save_button.setVisible(false);
+
+        product_id.setText(Integer.toString(product.getId()));
+        product_name.setText(product.getName());
+        product_inv.setText(Integer.toString(product.getStock()));
+        product_price.setText(Double.toString(product.getPrice()));
+        product_max.setText(Integer.toString(product.getMax()));
+        product_min.setText(Integer.toString(product.getMin()));
+        this.productParts = product.getAllAssociatedParts();
+        updateCurrentProducts();
+    }
+
+    @FXML
+    public void productUpdateButton() {
+        int productId = Integer.parseInt(product_id.getText());
+        String productName = product_name.getText();
+        int productInv = Integer.parseInt(product_inv.getText());
+        double productPrice = Double.parseDouble(product_price.getText());
+        int productMax = Integer.parseInt(product_max.getText());
+        int productMin = Integer.parseInt(product_min.getText());
+        Product product = lookupProduct(productId);
+
+        Product updateProduct = new Product();
+        updateProduct.setId(productId);
+        updateProduct.setName(productName);
+        updateProduct.setStock(productInv);
+        updateProduct.setPrice(productPrice);
+        updateProduct.setMax(productMax);
+        updateProduct.setMin(productMin);
+
+        for (Part part : productParts) {
+            updateProduct.addAssociatedPart(part);
+        }
+
+        try {
+            updateProduct.validate();
+            Inventory.updateProduct(productId, updateProduct);
+
+            System.out.println("Updating and going to main screen");
+            Stage stage = new Stage();
+            stage = (Stage) product_update_button.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/inventorySystem/Views/mainWindow.fxml"));
             Parent root = loader.load();

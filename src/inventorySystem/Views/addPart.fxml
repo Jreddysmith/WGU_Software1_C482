@@ -14,10 +14,10 @@
 <GridPane fx:controller="inventorySystem.Controllers.AddPartController" xmlns:fx="http://javafx.com/fxml" alignment="center"
           hgap="10" vgap="15" >
     <padding> <Insets top="25" right="25" bottom="10" left="25" /> </padding>
-    <Text style="-fx-font-size: 12pt" text="Add Part" GridPane.columnIndex="0" GridPane.rowIndex="0"
+    <Text fx:id="main_label" style="-fx-font-size: 12pt" text="Add Part" GridPane.columnIndex="0" GridPane.rowIndex="0"
           GridPane.columnSpan="2" />
 
-    <RadioButton onAction="#inHouseClick" selected="true" fx:id="in_house" mnemonicParsing="false" text="In House"
+    <RadioButton onAction="#inHouseClick" fx:id="in_house" mnemonicParsing="false" text="In House"
                  GridPane.columnIndex="1"
                  GridPane.rowIndex="0">
 
@@ -30,28 +30,30 @@
                  GridPane.rowIndex="0" toggleGroup="$group1"  />
 
     <Label text="ID" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-    <TextField fx:id="part_id" GridPane.columnIndex="1" GridPane.rowIndex="1" disable="true"/>
+    <TextField fx:id="part_id" GridPane.columnIndex="1" GridPane.rowIndex="1" disable="true"
+               promptText="Auto Gen - Disabled"/>
 
     <Label text="Name" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-    <TextField fx:id="part_name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <TextField fx:id="part_name" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="Part Name" />
 
     <Label text="INV" GridPane.rowIndex="3" GridPane.columnIndex="0" />
-    <TextField fx:id="inv" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <TextField fx:id="inv" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="INV" />
 
     <Label text="Price/Cost" GridPane.rowIndex="4" GridPane.columnIndex="0" />
-    <TextField fx:id="price_cost" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <TextField fx:id="price_cost" GridPane.columnIndex="1" GridPane.rowIndex="4" promptText="Price/Cost" />
 
     <Label text="Max" GridPane.rowIndex="5" GridPane.columnIndex="0" />
-    <TextField fx:id="max" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    <TextField fx:id="max" GridPane.columnIndex="1" GridPane.rowIndex="5" promptText="Max" />
     <Label text="Min" GridPane.rowIndex="5" GridPane.columnIndex="2" />
-    <TextField fx:id="min" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+    <TextField fx:id="min" GridPane.columnIndex="3" GridPane.rowIndex="5" promptText="Min"/>
 
     <Label fx:id="company_name_field" text="Machine ID" GridPane.rowIndex="6" GridPane.columnIndex="0" />
-    <TextField fx:id="company_name" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    <TextField fx:id="company_name" GridPane.columnIndex="1" GridPane.rowIndex="6" promptText="Mach ID"/>
 
     <HBox spacing="10" alignment="bottom_right" GridPane.columnIndex="1" GridPane.rowIndex="7">
-        <Button fx:id="save_button" onAction="#savePart" text="Save" />
-        <Button fx:id="cancel_button" onAction="#cancelButton" text="Cancel" />
+        <Button prefWidth="70" fx:id="save_button" onAction="#savePart" text="Save" />
+        <Button prefWidth="80" visible="false" fx:id="update_button" text="update" onAction="#updateButton" />
+        <Button prefWidth="80" fx:id="cancel_button" onAction="#cancelButton" text="Cancel" />
     </HBox>
 
 </GridPane>

@@ -38,11 +38,11 @@ public class Inventory {
     }
 
     public static void updatePart(int index, Part selectedPart) {
-        allParts.set(index, selectedPart);
+        allParts.set(index-1, selectedPart);
     }
 
     public static void updateProduct(int index, Product newProduct) {
-        allProducts.set(index, newProduct);
+        allProducts.set(index-1, newProduct);
     }
 
     public static boolean deletePart(Part selectedPart) {

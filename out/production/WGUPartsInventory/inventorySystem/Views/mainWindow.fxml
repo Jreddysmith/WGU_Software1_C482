@@ -46,7 +46,8 @@
                   style="-fx-border-radius: 10px; -fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid;">
          <children>
             <Label fx:id="products_label" layoutX="23.0" layoutY="37.0" prefHeight="21.0" prefWidth="60.0" text="Products" />
-            <Button fx:id="products_search" layoutX="144.0" layoutY="32.0" mnemonicParsing="false" text="Search" />
+            <Button fx:id="products_search" onAction="#productSearchButton" layoutX="144.0" layoutY="32.0"
+                    mnemonicParsing="false" text="Search" />
             <TextField fx:id="products_search_field" layoutX="241.0" layoutY="32.0" />
             <TableView fx:id="product_table" layoutX="12.0" layoutY="95.0" prefHeight="144.0" prefWidth="477.0">
                <columns>
@@ -59,8 +60,12 @@
             <Button onAction="#productsAddButton" fx:id="products_add_button" layoutX="83.0" layoutY="250.0"
                     mnemonicParsing="false"
                      prefHeight="31.0" prefWidth="74.0" text="Add" />
-            <Button fx:id="products_modify_button" layoutX="170.0" layoutY="250.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Modify" />
-            <Button fx:id="products_delete_button" layoutX="276.0" layoutY="250.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="89.0" text="Delete" />
+            <Button fx:id="products_modify_button" onAction="#productModifyButton" layoutX="170.0" layoutY="250.0"
+                    mnemonicParsing="false"
+                    prefHeight="31.0" prefWidth="99.0" text="Modify" />
+            <Button fx:id="products_delete_button" onAction="#productDeleteButton" layoutX="276.0" layoutY="250.0"
+                    mnemonicParsing="false"
+                    prefHeight="31.0" prefWidth="89.0" text="Delete" />
          </children>
       </AnchorPane>
       <Button fx:id="exit_button" onAction="#exitMainWindow" layoutX="884.0" layoutY="517.0" mnemonicParsing="false"

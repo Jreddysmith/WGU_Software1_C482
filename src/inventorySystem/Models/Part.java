@@ -12,7 +12,7 @@ public abstract class Part {
     private int max;
 
     public Part(){
-        id = ++count;
+//        id = ++count;
     }
 
     public int getId() {
@@ -80,5 +80,6 @@ public abstract class Part {
         if(getStock() < getMin() || getStock() > getMax()) {
             throw new ValidationException("Inventory must be between the min and max values");
         }
+        id = ++count;
     }
 }

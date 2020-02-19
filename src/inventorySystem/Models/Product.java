@@ -15,7 +15,7 @@ public class Product {
     private int max;
 
     public Product() {
-        id = ++count;
+//        id = ++count;
     }
 
     public void addAssociatedPart(Part part) {
@@ -98,5 +98,6 @@ public class Product {
         if(getStock() < getMin() || getStock() > getMax()) {
             throw new ValidationException("Inventory must be between the min and max values");
         }
+        id = ++count;
     }
 }
